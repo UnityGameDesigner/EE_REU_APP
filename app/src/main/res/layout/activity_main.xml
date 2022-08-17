@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.hello_world.MainActivity">
+
+    <Button
+        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/increase"
+        android:onClick="increase_func"/>
+
+    <TextView
+        android:text="Value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:id="@+id/Value_text"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/increase" />
+
+    <TextView
+        android:text="Byte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Value_text"
+        android:layout_alignStart="@+id/Value_text"
+        android:layout_marginTop="54dp"
+        android:id="@+id/Byte_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NFC tag"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/increase"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="47dp"
+        android:id="@+id/decrease"
+        android:onClick="decrease_func"/>
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id= "@+id/graph"
+        android:layout_below="@+id/Byte_text"
+        android:layout_above="@+id/increase"
+        android:layout_marginTop="43dp"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Intent_button"
+        android:onClick="intent_function"
+        android:layout_below="@+id/decrease"
+        android:layout_alignStart="@+id/increase" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Enter message"
+        android:ems="10"
+        android:id="@+id/edit_message"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/increase" />
+
+    <TextView
+        android:text="ADC1:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Value_text"
+        android:layout_alignStart="@+id/Value_text"
+        android:id="@+id/ADC1_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ADC1_text"
+        android:layout_alignStart="@+id/ADC1_text"
+        android:id="@+id/ADC2_text"
+        android:text="ADC2:" />
+
+    <TextView
+        android:text="ADC0:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ADC2_text"
+        android:layout_alignStart="@+id/Byte_text"
+        android:id="@+id/ADC0_text" />
+
+    <CheckBox
+        android:text="Digital out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:onClick="Digital_toggle"/>
+
+</RelativeLayout>
