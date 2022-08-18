@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,115 +8,151 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorAccent"
     tools:context="com.example.hello_world.MainActivity">
 
     <Button
-        android:text="Start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="40dp"
         android:id="@+id/increase"
-        android:onClick="increase_func"/>
-
-    <TextView
-        android:text="Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:id="@+id/Value_text"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/increase" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginBottom="330dp"
+        android:background="@drawable/rounded_rectangle"
+        android:fontFamily="@font/galey"
+        android:onClick="increase_func"
+        android:text="Start" />
 
     <TextView
-        android:text="Byte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Value_text"
-        android:layout_alignStart="@+id/Value_text"
-        android:layout_marginTop="54dp"
-        android:id="@+id/Byte_text" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NFC tag"
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_width="229dp"
+        android:layout_height="45dp"
+        android:gravity="center_horizontal"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/galey"
+        android:text="NFC tag" />
 
     <Button
-        android:text="Stop"
+        android:id="@+id/decrease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/increase"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="47dp"
-        android:id="@+id/decrease"
-        android:onClick="decrease_func"/>
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="63dp"
+        android:background="@drawable/rounded_rectangle"
+        android:fontFamily="@font/galey"
+        android:onClick="decrease_func"
+        android:text="Stop" />
 
     <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id= "@+id/graph"
-        android:layout_below="@+id/Byte_text"
+        android:layout_height="289dp"
         android:layout_above="@+id/increase"
-        android:layout_marginTop="43dp"
-        android:layout_alignParentStart="true" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp" />
 
     <Button
-        android:text="Change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/Intent_button"
-        android:onClick="intent_function"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_below="@+id/decrease"
-        android:layout_alignStart="@+id/increase" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:text="Enter message"
-        android:ems="10"
-        android:id="@+id/edit_message"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/increase" />
-
-    <TextView
-        android:text="ADC1:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Value_text"
-        android:layout_alignStart="@+id/Value_text"
-        android:id="@+id/ADC1_text" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ADC1_text"
-        android:layout_alignStart="@+id/ADC1_text"
-        android:id="@+id/ADC2_text"
-        android:text="ADC2:" />
-
-    <TextView
-        android:text="ADC0:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ADC2_text"
-        android:layout_alignStart="@+id/Byte_text"
-        android:id="@+id/ADC0_text" />
+        android:layout_alignStart="@+id/increase"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="318dp"
+        android:onClick="intent_function"
+        android:text="Change" />
 
     <CheckBox
-        android:text="Digital out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
         android:id="@+id/checkBox"
-        android:layout_below="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+
         android:layout_alignParentEnd="true"
-        android:onClick="Digital_toggle"/>
+        android:layout_marginTop="441dp"
+
+        android:layout_marginEnd="47dp"
+        android:onClick="Digital_toggle"
+        android:text="Digital out" />
+
+
+    <TextView
+        android:id="@+id/background"
+        android:layout_width="354dp"
+        android:layout_height="278dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/info_background" />
+
+    <TextView
+        android:id="@+id/ADC1_text"
+        android:layout_width="311dp"
+        android:layout_height="46dp"
+        android:layout_below="@+id/Value_text"
+        android:layout_alignStart="@+id/Value_text"
+
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/galey"
+        android:text="ADC1:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/Byte_text"
+        android:layout_width="319dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/ADC0_text"
+
+        android:layout_alignStart="@+id/Value_text"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/galey"
+        android:text="Byte"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/ADC0_text"
+        android:layout_width="315dp"
+        android:layout_height="46dp"
+        android:layout_below="@+id/ADC2_text"
+        android:layout_alignStart="@+id/Byte_text"
+
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/galey"
+        android:text="ADC0:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/Value_text"
+        android:layout_width="314dp"
+        android:layout_height="32dp"
+
+
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="480dp"
+
+        android:fontFamily="@font/galey"
+        android:text="Value"
+        android:textColor="#000000"
+        android:textSize="23dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ADC2_text"
+        android:layout_width="308dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/ADC1_text"
+        android:layout_alignStart="@+id/ADC1_text"
+
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/galey"
+        android:text="ADC2:"
+        android:textSize="20dp" />
 
 </RelativeLayout>

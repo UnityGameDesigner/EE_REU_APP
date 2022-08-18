@@ -1,10 +1,8 @@
 package com.example.hello_world;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.app.PendingIntent;
 import android.content.IntentFilter;
-import android.content.IntentFilter.MalformedMimeTypeException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,14 +16,12 @@ import android.nfc.tech.NfcV;
 import android.os.AsyncTask;
 import java.io.IOException;
 import android.os.Handler;
-import java.util.Arrays;
+
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import static android.R.attr.delay;
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     TextView Value,Byte_text,text_view,adc0,adc1,adc2;
@@ -66,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
         graph.getViewport().setMaxX(40);
+
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(0.5);
+
+        graph.getViewport().setScrollable(true); // enables horizontal scrolling
+         // enables vertical scrolling
+        graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
+
 
         nfc = NfcAdapter.getDefaultAdapter(this);
         if (nfc == null) {
@@ -121,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 init_display(f_val,b_val,ADC0,ADC1,ADC2);
                 if(b_val>0)
                 {   graphLastXValue += 1d;
-                    mSeries.appendData(new DataPoint(graphLastXValue, ADC0), true, 40);}
+                    mSeries.appendData(new DataPoint(graphLastXValue, ADC1), true, 70);}
                 mHandler.postDelayed(this, 100);
             }
         };
@@ -363,22 +368,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void intent_function(View view)
     {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        //Log.i("intent ", "received change screen intent");
-        startActivity(intent);
+//        Intent intent = new Intent(this, DisplayMessageActivity.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        intent.putExtra(EXTRA_MESSAGE, message);
+//        //Log.i("intent ", "received change screen intent");
+//        startActivity(intent);
+    }
+
+    protected double temperature(float ADC1, float ADC2) {
+        float tempConv = (ADC2/ADC1) * 100000;
+        double celciusTemp = (1.0/ (((((Math.log10(tempConv/100000.0) / Math.log(2.718))) / 4330.0) + 1.0/298.15))) - 273.15;
+        double farenheightTemp = (celciusTemp*9.0/5.0) + 32;
+        return farenheightTemp;
     }
 
     protected void init_display(String disp_value,byte disp_byte,float disp_ADC0,float disp_ADC1,float disp_ADC2)  {
         //display float
-        Value.setText("Value: " + disp_value);
+        Value.setText("Collected Tag Information");
         //Display byte
         Byte_text.setText("Status : " + ((disp_byte > 0) ? "running" : "stopped"));
         //display ADC0
-        adc0.setText("ADC0: "+String.valueOf(disp_ADC0)+ "V");
-        adc1.setText("ADC1: "+String.valueOf(disp_ADC1)+ "V");
-        adc2.setText("ADC2: "+String.valueOf(disp_ADC2)+ "V");
+        adc0.setText("Calculated Temperature: "+String.valueOf(temperature(disp_ADC1, disp_ADC2))+ " F");
+        adc1.setText("Ref Thermistor Voltage: "+String.valueOf(disp_ADC1)+ "V");
+        adc2.setText("Add Thermistor Voltage: "+String.valueOf(disp_ADC2)+ "V");
     }
 }
