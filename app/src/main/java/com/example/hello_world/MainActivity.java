@@ -18,6 +18,7 @@ import java.io.IOException;
 import android.os.Handler;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -61,11 +62,14 @@ public class MainActivity extends AppCompatActivity {
         graph.addSeries(mSeries);
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(40);
+        graph.getViewport().setMaxX(300);
 
         graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(0.5);
+        graph.getViewport().setMinY(83);
+        graph.getViewport().setMaxY(92);
+        GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+        gridLabel.setVerticalAxisTitle("Temperature (\u2109)");
+        gridLabel.setHorizontalAxisTitle("Time (ms)");
 
         graph.getViewport().setScrollable(true); // enables horizontal scrolling
          // enables vertical scrolling
@@ -126,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 init_display(f_val,b_val,ADC0,ADC1,ADC2);
                 if(b_val>0)
                 {   graphLastXValue += 1d;
-                    mSeries.appendData(new DataPoint(graphLastXValue, ADC1), true, 70);}
+                    mSeries.appendData(new DataPoint(graphLastXValue, temperature(ADC2, ADC1)), true, 300);}
                 mHandler.postDelayed(this, 100);
             }
         };
@@ -389,8 +393,8 @@ public class MainActivity extends AppCompatActivity {
         //Display byte
         Byte_text.setText("Status : " + ((disp_byte > 0) ? "running" : "stopped"));
         //display ADC0
-        adc0.setText("Calculated Temperature: "+String.valueOf(temperature(disp_ADC1, disp_ADC2))+ " F");
-        adc1.setText("Ref Thermistor Voltage: "+String.valueOf(disp_ADC1)+ "V");
-        adc2.setText("Add Thermistor Voltage: "+String.valueOf(disp_ADC2)+ "V");
+        adc0.setText("Calculated Temperature: "+String.valueOf(temperature(disp_ADC2, disp_ADC1))+ " F");
+        adc1.setText("Reference Thermistor Voltage: "+String.valueOf(disp_ADC1)+ "V");
+        adc2.setText("External Thermistor Voltage: "+String.valueOf(disp_ADC2)+ "V");
     }
 }
